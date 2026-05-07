@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#000000",
+            secondary: "#0058bc",
+            background: "#faf9fe",
+            surface: "#ffffff",
+            outline: "#d6d6d6",
+            muted: "#6b7280"
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-background text-black">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 w-full z-50 bg-white/80 glass-header border-b border-gray-100 h-20">
+
+    <div class="max-w-[1100px] mx-auto px-6 flex items-center justify-between h-full">
+
+      <div class="text-2xl font-bold">
+        Clarify AI
+      </div>
+
+      <nav class="hidden md:flex items-center gap-10">
+        <a href="#" class="hover:text-secondary transition">
+          Features
+        </a>
+
+        <a href="#" class="hover:text-secondary transition">
+          Pricing
+        </a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+
+        <button class="px-4 py-2">
+          Login
+        </button>
+
+        <button class="bg-secondary text-white px-6 py-3 rounded-xl font-semibold">
+          Get Started
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- MAIN -->
+  <main class="pt-28">
+
+    <!-- HERO -->
+    <section class="max-w-[1200px] mx-auto px-6 pb-24">
+
+      <!-- TITLE -->
+      <div class="text-center mb-16">
+
+        <h1 class="text-6xl font-bold mb-5 leading-tight">
+          Remove <span class="text-secondary font-bold">
+            Image
+          </span> Background
+        </h1>
+
+        <p class="text-2xl text-gray-600">
+          100% automatically for
+          <span class="text-secondary font-bold">
+            Free
+          </span>
+        </p>
+
+      </div>
+
+      <!-- VIDEO + UPLOAD -->
+      <div class="grid lg:grid-cols-2 gap-10 items-stretch">
+
+        <!-- VIDEO -->
+        <div class="h-[520px] rounded-[40px] overflow-hidden floating-shadow bg-gray-200">
+
+          <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+            <source src="home-page-banner.mp4" type="video/mp4">
+          </video>
+
+        </div>
+
+        <!-- UPLOAD -->
+        <div
+          class="h-[520px] bg-white rounded-[40px] floating-shadow border border-gray-200 flex flex-col justify-center items-center text-center p-10">
+
+          <button id="uploadBtn"
+            class="bg-secondary text-white px-12 py-5 rounded-2xl text-lg font-semibold flex items-center gap-3 hover:scale-[1.02] transition-all">
+
+            <span class="material-symbols-outlined text-[30px]">
+              upload
+            </span>
+
+            Upload Image
+
+          </button>
+
+          <p class="mt-6 text-gray-600">
+            or drag and drop images
+          </p>
+
+          <p class="mt-3 text-sm text-gray-500">
+            Paste image or
+            <span class="border border-gray-300 px-2 py-1 rounded-lg">
+              Ctrl + V
+            </span>
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- RESULT -->
+      <div id="resultWrapper" class="mt-16 flex justify-center"></div>
+
+    </section>
+<!-- COMPARISON SECTION -->
+<section class="py-20 bg-gray-50">
+
+  <div class="max-w-[1100px] mx-auto px-6">
+
+    <!-- HEADING -->
+    <div class="text-center mb-14">
+
+      <h2 class="text-5xl font-bold mb-5">
+  Remove Backgrounds in Seconds
+</h2>
+
+<p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+  Powered by advanced AI to deliver clean, accurate cutouts
+  for people, products, and detailed objects.
+</p>
+
+    </div>
+
+    <!-- SLIDER -->
+    <div
+      id="comparisonSlider"
+      class="relative w-full h-[430px] rounded-[40px] overflow-hidden shadow-2xl select-none bg-white"
+    >
+
+      <!-- ORIGINAL WRAPPER -->
+      <div
+        id="beforeWrapper"
+        class="absolute top-0 left-0 h-full overflow-hidden"
+        style="width:50%;"
+      >
+
+        <img
+          src="1.jpg"
+          id="beforeImage"
+          class="absolute top-0 left-0 w-full h-full object-cover"
+        />
+
+      </div>
+
+      <!-- NEW IMAGE WRAPPER -->
+      <div
+        id="afterWrapper"
+        class="absolute top-0 right-0 h-full overflow-hidden"
+        style="width:50%;"
+      >
+
+        <img
+          src="2.png"
+          id="afterImage"
+          class="absolute top-0 right-0 w-full h-full object-cover"
+        />
+
+      </div>
+
+      <!-- CENTER LINE -->
+      <div
+        id="sliderLine"
+        class="absolute top-0 bottom-0 w-1 bg-white z-20"
+        style="left:50%; transform:translateX(-50%);"
+      ></div>
+
+      <!-- BUTTON -->
+      <div
+        id="sliderButton"
+        class="absolute top-1/2 z-30 w-14 h-14 rounded-full bg-white border-4 border-white shadow-2xl flex items-center justify-center cursor-ew-resize"
+        style="left:50%; transform:translate(-50%, -50%);"
+      >
+
+        <span class="material-symbols-outlined text-secondary text-3xl">
+          drag_indicator
+        </span>
+
+      </div>
+
+      <!-- LABELS -->
+      <div class="absolute bottom-5 left-5 z-30">
+        <div class="bg-black/60 text-white px-4 py-2 rounded-xl font-semibold text-sm">
+          Original
+        </div>
+      </div>
+
+      <div class="absolute bottom-5 right-5 z-30">
+        <div class="bg-secondary text-white px-4 py-2 rounded-xl font-semibold text-sm">
+          Clean Cut
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- FEATURES SECTION -->
+<section class="py-24 bg-[#f7f7fb] border-t border-gray-100">
+
+  <div class="max-w-[1200px] mx-auto px-6">
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-3 gap-10">
+
+      <!-- CARD 1 -->
+      <div
+        class="bg-white rounded-[30px] p-10 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
+      >
+
+        <!-- ICON -->
+        <div
+          class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-8"
+        >
+
+          <span class="material-symbols-outlined text-secondary text-3xl">
+            auto_awesome
+          </span>
+
+        </div>
+
+        <!-- TITLE -->
+        <h3 class="text-4xl font-bold mb-5">
+          AI Precision
+        </h3>
+
+        <!-- TEXT -->
+        <p class="text-gray-600 text-lg leading-relaxed">
+          Advanced AI models trained on millions of images
+          to deliver clean, accurate background removal
+          with fine edge detection.
+        </p>
+
+      </div>
+
+      <!-- CARD 2 -->
+      <div
+        class="bg-white rounded-[30px] p-10 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
+      >
+
+        <!-- ICON -->
+        <div
+          class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-8"
+        >
+
+          <span class="material-symbols-outlined text-secondary text-3xl">
+            bolt
+          </span>
+
+        </div>
+
+        <!-- TITLE -->
+        <h3 class="text-4xl font-bold mb-5">
+          Lightning Speed
+        </h3>
+
+        <!-- TEXT -->
+        <p class="text-gray-600 text-lg leading-relaxed">
+          Remove backgrounds in seconds with optimized
+          AI processing designed for smooth and fast
+          performance.
+        </p>
+
+      </div>
+
+      <!-- CARD 3 -->
+      <div
+        class="bg-white rounded-[30px] p-10 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
+      >
+
+        <!-- ICON -->
+        <div
+          class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-8"
+        >
+
+          <span class="material-symbols-outlined text-secondary text-3xl">
+            stacks
+          </span>
+
+        </div>
+
+        <!-- TITLE -->
+        <h3 class="text-4xl font-bold mb-5">
+          Batch Processing
+        </h3>
+
+        <!-- TEXT -->
+        <p class="text-gray-600 text-lg leading-relaxed">
+          Process multiple images effortlessly and save
+          time with efficient automated workflows.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-gray-100 py-12">
+
+    <div class="max-w-[1300px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+
+      <div class="text-center md:text-left">
+        <div class="text-2xl font-bold">
+          Clarify AI
+        </div>
+
+        <p class="text-gray-500 mt-2">
+          © 2026 Clarify AI. All rights reserved.
+        </p>
+      </div>
+
+      <div class="flex gap-6 text-gray-600">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- FILE INPUT -->
+  <input type="file" id="imageUpload" accept="image/*" class="hidden" />
+
+  <script src="main.js" type="module"></script>
+  <script src="slider.js"></script>
+</body>
+</body>
+
+</html>
